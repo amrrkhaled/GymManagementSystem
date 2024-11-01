@@ -1,60 +1,99 @@
 # Gym Membership Management System
 
 ## Overview
-The Gym Membership Management System is a Java application designed to manage gym memberships effectively. It includes a graphical user interface (GUI) built with NetBeans that allows both admins and trainers to interact with the system seamlessly. The application supports functionalities such as adding and viewing trainers and members, class management, and user authentication.
 
-## Packages and Structure
+The Gym Membership Management System is designed to provide an intuitive graphical user interface (GUI) for managing gym memberships, classes, and trainer information. This project extends the functionalities developed in Lab 4 by allowing users, including admins and trainers, to interact with the system seamlessly using a GUI built with NetBeans' GUI Builder.
+
+## Objective
+
+The primary objective of this lab project is to enhance the Gym Membership Management System by implementing a user-friendly GUI, which facilitates various operations such as adding and managing trainers and members, viewing classes, and handling registrations.
+
+## Packages and Class Structure
+
 The project is organized into three main packages:
 
-1. **backend**: Contains all the classes and database interactions from Lab 4, including:
-   - `AdminRole`
-   - `TrainerRole`
-   - `Trainer`
-   - `Member`
-   - `Class`
-   - `MemberClassRegistration`
+1. **backend**
+   - Contains core classes including:
+     - `AdminRole`
+     - `TrainerRole`
+     - `Trainer`
+     - `Member`
+     - `Class`
+     - `MemberClassRegistration`
+   - Responsible for database interactions and business logic.
+   - Access modifiers are set to allow necessary access to the frontend.
 
-2. **frontend**: Contains all GUI components, with each class representing a window for specific operations.
+2. **frontend**
+   - Contains GUI components that represent various user interfaces.
+   - Each class corresponds to a specific window for performing operations (e.g., adding a new member, viewing trainer details).
 
-3. **constants**: Contains interfaces for file names and login credentials:
-   - `FileNames.java`: Stores filenames for trainers, members, classes, and registrations.
-   - `LoginCredentials.java`: Contains the credentials for admin and trainer logins.
+3. **constants**
+   - Contains two interfaces:
+     - `FileNames.java`: Defines file names for data storage.
+     - `LoginCredentials.java`: Stores login credentials for admin and trainer roles.
 
-## Features
-The system includes the following features:
+## Functional Requirements
 
-### User Interfaces
-- **Main Window**: Access for Admin and Trainer roles.
-- **Admin Login Window**: Secure login for admin users.
-- **Admin Role Window**: Manage trainers and perform admin tasks (add/remove trainers, view trainers).
-- **Add Trainer Window**: Input new trainer details.
-- **View Trainers Window**: Display all trainers in a table.
-- **Remove Trainer Window**: Delete a trainer by ID.
-- **Trainer Login Window**: Secure login for trainers.
-- **Trainer Role Window**: Manage members and classes (add members, view members, register members for classes).
-- **Add Member Window**: Input new member details.
-- **View Members Window**: Display all gym members in a table.
-- **Add Class Window**: Input new class details.
-- **View Classes Window**: Display all classes in a table.
-- **Register Member for Class Window**: Register members for classes if seats are available.
-- **Cancel Registration Window**: Cancel a member's class registration.
-- **View Registrations Window**: Display all member registrations.
+### GUI Components
+
+1. **Main Window**
+   - Buttons: `Admin Role` and `Trainer Role`.
+   - Navigates to the appropriate login window upon selection.
+
+2. **Admin Login Window**
+   - Validates credentials against `LoginCredentials`.
+   - Displays a warning for incorrect credentials.
+
+3. **Admin Role Window**
+   - Operations:
+     - Add Trainer
+     - View Trainers
+     - Remove Trainer
+     - Logout (saves data and returns to the main window).
+
+4. **Add Trainer Window**
+   - Inputs: ID, name, email, specialty, and phone number.
+   - Validations for empty fields and existing trainers.
+
+5. **View Trainers Window**
+   - Displays a table of all trainers in the system.
+
+6. **Remove Trainer Window**
+   - Allows removal of a trainer by ID with corresponding validations.
+
+7. **Trainer Login Window**
+   - Similar functionality to the admin login with validations.
+
+8. **Trainer Role Window**
+   - Operations:
+     - Add Member
+     - View Members
+     - Add Class
+     - View Classes
+     - Register Member for Class
+     - Cancel Registration
+     - View Registrations
+     - Logout (saves all updated data).
+
+9. **Member and Class Management Windows**
+   - Windows for adding members, viewing members, adding classes, viewing classes, and handling registrations with appropriate validations.
 
 ### File Handling
-- All data related to trainers, members, classes, and registrations is stored in text files:
-  - `Trainers.txt`
-  - `Members.txt`
-  - `Class.txt`
-  - `Registration.txt`
+
+- Data for trainers, members, classes, and registrations are stored and retrieved from text files (`Trainers.txt`, `Members.txt`, `Class.txt`, `Registration.txt`).
+- Use the `FileNames` interface to manage file references.
 
 ### Validation
-The system includes validation checks to ensure:
-- Unique trainer IDs.
-- Valid member registration details (all fields must be filled).
-- Class registration only occurs if seats are available.
-- Correct credentials for admin and trainer logins.
 
-## Installation
+Implement the following validations:
+- Unique trainer IDs.
+- Valid details for member registration.
+- Available seats for class registration.
+- Credential validation for admin and trainer logins.
+
+### Installation
 1. Clone the repository:
    ```bash
-   git clone <repository-url>
+   git clone <https://github.com/amrrkhaled/Gym.git)>
+
+
