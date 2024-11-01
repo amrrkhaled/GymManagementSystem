@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lab.pkg4;
+package backend;
 
 import java.io.*;
 import java.time.LocalDate;
@@ -30,28 +30,5 @@ public class MemberClassRegistrationDatabase extends Database<MemberClassRegistr
         MemberClassRegistration mCR = new MemberClassRegistration(data[0].trim(), data[1].trim(), data[3].trim(), d);
         return mCR;
     }
-    
-    @Override
-   public Boolean contains(String key) {
-
-        for (MemberClassRegistration record : records) {
-            if (record.getSearchKey().equals(key) && record.getStatus().equals("active")) {
-                return true;
-            }
-        }
-        return false;
-
-    }
-    @Override
-     public MemberClassRegistration getRecord(String key) {
-        for (MemberClassRegistration record : records) {
-            if (record.getSearchKey().equals(key) && record.getStatus().equals("active")) {
-                return record;
-            }
-        }
-        return null;
-    }
-    
-
-   
+        
 }

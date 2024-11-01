@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package lab.pkg4;
+package backend;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -75,10 +75,8 @@ public class TrainerRole {
             LocalDate d = mCR.getRegistrationDate();
             long daysDifference = ChronoUnit.DAYS.between(d, LocalDate.now());
             if (daysDifference <= 3) {
-                System.out.println(memberID+classID);
-                
-                mCR.setStatus("cancelled");
-                System.out.println("settt"+mCR.getStatus());
+                registrationDatabase.deleteRecord(memberID + "-" + classID);
+           
                 classDatabase.getRecord(classID).setAvailableSeats(seats + 1);
                 return true;
             }
