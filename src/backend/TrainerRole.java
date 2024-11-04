@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package backend;
+import constants.FileNames;
 
 import java.time.LocalDate;
 import java.util.*;
@@ -19,11 +20,11 @@ public class TrainerRole {
     private MemberClassRegistrationDatabase registrationDatabase;
 
     public TrainerRole() {
-        memberDatabase = new MemberDatabase("Members.txt");
+        memberDatabase = new MemberDatabase(FileNames.MEMBER_FILENAME);
         memberDatabase.readFromFile();
-        classDatabase = new ClassDatabase("Class.txt");
+        classDatabase = new ClassDatabase(FileNames.CLASS_FILENAME);
         classDatabase.readFromFile();
-        registrationDatabase = new MemberClassRegistrationDatabase("Registration.txt");
+        registrationDatabase = new MemberClassRegistrationDatabase(FileNames.REGISTRATION_FILENAME);
         registrationDatabase.readFromFile();
     }
 

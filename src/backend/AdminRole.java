@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package backend;
+import constants.FileNames;
 
 import java.util.*;
 
@@ -15,7 +16,7 @@ public class AdminRole {
     public TrainerDatabase database;
 
     public AdminRole() {
-        database = new TrainerDatabase("Trainers.txt");
+        database = new TrainerDatabase(FileNames.TRAINER_FILENAME);
         database.readFromFile();
     }
     

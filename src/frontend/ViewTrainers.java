@@ -23,6 +23,8 @@ public class ViewTrainers extends javax.swing.JFrame {
     public ViewTrainers(AdminRole admin) {
         initComponents();
         this.adm = admin ;
+            this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         fillTable();
     }
     

@@ -112,6 +112,10 @@ public class adminLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username = UsernameText.getText();
         String password = PasswordText.getText();
+          if (username.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "Fields can't be empty");
+            return;
+        }
         if (username.equals(LoginCredentials.ADMIN_USERNAME) && password.equals(LoginCredentials.ADMIN_PASSWORD)) {
             AdminOptions a = new AdminOptions();
             setVisible(false);

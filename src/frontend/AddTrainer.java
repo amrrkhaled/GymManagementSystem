@@ -22,6 +22,8 @@ public class AddTrainer extends javax.swing.JFrame {
         initComponents();
         this.setTitle("Add Trainer");
         this.adm = admin;
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -191,22 +193,38 @@ public class AddTrainer extends javax.swing.JFrame {
         String email = EmailText.getText();
         String PhoneNumberText = phoneNumberText.getText();
         String speciality = SpecialityText.getText();
-        int id = 0;
-        int phoneNumber = 0;
-        if (email.equals("") || name.equals("") || PhoneNumberText.equals("") || speciality.equals("") || idText.equals("")) {
+      
+        if (email.isEmpty() || name.isEmpty() || PhoneNumberText.isEmpty() || speciality.isEmpty() || idText.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Some fields are empty");
             return;
         }
-        try {
-            id = Integer.parseInt(idText);
-            phoneNumber = Integer.parseInt(PhoneNumberText);
-            adm.addTrainer(idText, name, email, speciality, PhoneNumberText);
-        
-            setVisible(false);
-            JOptionPane.showMessageDialog(this, "the Trainer with id " + id + " has been successfly added");
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter numeric value.");
+
+        if (!idText.matches("T\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. ID should start with 'T' followed by digits.");
             IdText.setText("");
+            return;
+        }
+
+        if (!PhoneNumberText.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Phone number should only contain digits.");
+            phoneNumberText.setText("");
+            return;
+        }
+
+        try {
+         
+
+            if (adm.database.contains(idText)) {
+                JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " already exists.");
+            } else {
+                adm.addTrainer(idText, name, email, speciality, PhoneNumberText);
+                JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " has been successfully added.");
+            }
+            setVisible(false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error occured.");
+            
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed

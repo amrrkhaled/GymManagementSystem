@@ -21,6 +21,8 @@ public class RemoveTrainer extends javax.swing.JFrame {
     public RemoveTrainer(AdminRole admin) {
         initComponents();
         this.adm = admin;
+            this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
 
     }
 
@@ -95,6 +97,13 @@ public class RemoveTrainer extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Some fields are empty");
             return;
         }
+        
+        
+        if (!TextField1.matches("T\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. ID should start with 'T' followed by digits.");
+            jTextField1.setText("");
+            return;
+        }
         try {
           
             if (adm.database.contains(TextField1)) {
@@ -105,8 +114,8 @@ public class RemoveTrainer extends javax.swing.JFrame {
             }
             setVisible(false);
 
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Please enter Vailid value.");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error occured");
             jTextField1.setText("");
         }
 

@@ -66,7 +66,6 @@ public abstract class Database<D extends Identifiables> {
     public void insertRecord(D record) {
         if (!contains(record.getSearchKey())) {
             records.add(record);
-            System.out.println(records.isEmpty());
                     
 
         } else {
