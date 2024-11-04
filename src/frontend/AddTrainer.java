@@ -219,8 +219,9 @@ public class AddTrainer extends javax.swing.JFrame {
             } else {
                 adm.addTrainer(idText, name, email, speciality, PhoneNumberText);
                 JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " has been successfully added.");
+                 setVisible(false);
             }
-            setVisible(false);
+           
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error occured.");

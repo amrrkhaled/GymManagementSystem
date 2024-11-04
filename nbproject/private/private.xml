@@ -5,6 +5,7 @@
         <group>
             <file>file:/home/amr/NetBeansProjects/Gym/src/constants/LoginCredentials.java</file>
             <file>file:/home/amr/NetBeansProjects/Gym/src/backend/AdminRole.java</file>
+            <file>file:/home/amr/NetBeansProjects/Gym/src/backend/MemberClassRegistrationDatabase.java</file>
             <file>file:/home/amr/NetBeansProjects/Gym/src/frontend/RemoveTrainer.java</file>
             <file>file:/home/amr/NetBeansProjects/Gym/src/frontend/AdminOptions.java</file>
             <file>file:/home/amr/NetBeansProjects/Gym/src/frontend/TrainerLogin.java</file>

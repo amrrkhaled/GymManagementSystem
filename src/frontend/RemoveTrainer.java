@@ -109,10 +109,11 @@ public class RemoveTrainer extends javax.swing.JFrame {
             if (adm.database.contains(TextField1)) {
                 adm.removeTrainer(TextField1);
                 JOptionPane.showMessageDialog(this, "the Trainer with id " + TextField1 + " has been successfly removed");
+                setVisible(false);
             } else {
                 JOptionPane.showMessageDialog(this, "the Trainer with id " + TextField1 + " doesnt exist");
             }
-            setVisible(false);
+            
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error occured");
