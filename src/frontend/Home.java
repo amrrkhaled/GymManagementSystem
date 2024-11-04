@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
 
 import javax.swing.JOptionPane;
 
@@ -17,6 +17,8 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
+        this.setTitle("Home"); 
+
     }
 
     /**
@@ -75,7 +77,8 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here
-        adminLogin m = new adminLogin(this);
+        adminLogin m = new adminLogin();
+        setVisible(false);
         m.setVisible(true);
         
         
@@ -83,6 +86,9 @@ public class Home extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        TrainerLogin t = new TrainerLogin();
+        setVisible(false);
+        t.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

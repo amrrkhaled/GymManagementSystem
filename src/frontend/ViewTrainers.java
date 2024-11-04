@@ -2,10 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
-import Backend.Trainer;
-import Backend.AdminRole;
+package frontend;
+import backend.Trainer;
+
+import backend.AdminRole;
 import java.util.ArrayList;
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 /**
  *
@@ -16,22 +18,27 @@ public class ViewTrainers extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-        AdminOptions ao;
-        AdminRole admin ;
+      
+      AdminRole adm;
     public ViewTrainers(AdminRole admin) {
         initComponents();
-        this.admin = admin ;
+        this.adm = admin ;
         fillTable();
     }
-    public void fillTable(){
-            ArrayList<Trainer> trainer = (ArrayList<Trainer>)admin.getListOfTrainers();
-       DefaultTableModel m = (DefaultTableModel) jTable1.getModel();
-        for (int i = 0; i < trainer.size(); i++) {
-            m.addRow(new Object[]{trainer.get(i).getSearchKey(), trainer.get(i).getName()});
+    
+    public void fillTable() {
+        
+        List<Trainer> records = adm.getListOfTrainers();
+
+        DefaultTableModel m = (DefaultTableModel) tableTrainers.getModel();
+        m.setRowCount(0);
+        for (int i = 0; i < records.size(); i++) {
+            m.addRow(new Object[]{records.get(i).getTrainerId(), records.get(i).getName(),records.get(i).getEmail(), records.get(i).getSpeciality(),records.get(i).getPhoneNumber()});
+
         }
-    
-    
+
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,22 +50,22 @@ public class ViewTrainers extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tableTrainers = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tableTrainers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Id", "Name", "Email", "Specialty", "Phone Number"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tableTrainers);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,8 +73,8 @@ public class ViewTrainers extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 375, Short.MAX_VALUE)
+                .addGap(19, 19, 19))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,6 +94,6 @@ public class ViewTrainers extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tableTrainers;
     // End of variables declaration//GEN-END:variables
 }

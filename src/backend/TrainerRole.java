@@ -76,7 +76,6 @@ public class TrainerRole {
             long daysDifference = ChronoUnit.DAYS.between(d, LocalDate.now());
             if (daysDifference <= 3) {
                 registrationDatabase.deleteRecord(memberID + "-" + classID);
-           
                 classDatabase.getRecord(classID).setAvailableSeats(seats + 1);
                 return true;
             }

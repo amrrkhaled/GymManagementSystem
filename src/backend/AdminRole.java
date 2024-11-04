@@ -12,7 +12,7 @@ import java.util.*;
  */
 public class AdminRole {
 
-    private TrainerDatabase database;
+    public TrainerDatabase database;
 
     public AdminRole() {
         database = new TrainerDatabase("Trainers.txt");

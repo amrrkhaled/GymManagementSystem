@@ -20,6 +20,26 @@ public class Trainer implements Identifiables{
         this.phoneNumber = phoneNumber;
     }
 
+    public String getTrainerId() {
+        return trainerId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getSpeciality() {
+        return speciality;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     @Override
     public String lineRepresentation() {
         String data = trainerId + ", " + name + ", " + email + ", " + speciality + ", " + phoneNumber;

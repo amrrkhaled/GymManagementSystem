@@ -2,7 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
+
+import backend.AdminRole;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -10,13 +13,15 @@ package Frontend;
  */
 public class RemoveTrainer extends javax.swing.JFrame {
 
+    AdminRole adm = new AdminRole();
+
     /**
      * Creates new form RemoveTrainer
      */
-        AdminOptions ao;
-    public RemoveTrainer(AdminOptions ao) {
+    public RemoveTrainer(AdminRole admin) {
         initComponents();
-        this.ao = ao ;
+        this.adm = admin;
+
     }
 
     /**
@@ -83,7 +88,28 @@ public class RemoveTrainer extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        String TextField1 = jTextField1.getText();
+       
+
+        if (TextField1.equals("")) {
+            JOptionPane.showMessageDialog(this, "Some fields are empty");
+            return;
+        }
+        try {
+          
+            if (adm.database.contains(TextField1)) {
+                adm.removeTrainer(TextField1);
+                JOptionPane.showMessageDialog(this, "the Trainer with id " + TextField1 + " has been successfly removed");
+            } else {
+                JOptionPane.showMessageDialog(this, "the Trainer with id " + TextField1 + " doesnt exist");
+            }
+            setVisible(false);
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter Vailid value.");
+            jTextField1.setText("");
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

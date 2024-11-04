@@ -2,9 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
 
 import javax.swing.JOptionPane;
+import backend.AdminRole;
 
 /**
  *
@@ -15,11 +16,12 @@ public class AddTrainer extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
-    AdminOptions ao;
+    AdminRole adm;
 
-    public AddTrainer(AdminOptions ao) {
+    public AddTrainer(AdminRole admin) {
         initComponents();
-        this.ao = ao;
+        this.setTitle("Add Trainer");
+        this.adm = admin;
     }
 
     /**
@@ -191,14 +193,17 @@ public class AddTrainer extends javax.swing.JFrame {
         String speciality = SpecialityText.getText();
         int id = 0;
         int phoneNumber = 0;
-        if (email.equals("") || name.equals("") || PhoneNumberText.equals("") || speciality.equals("") || idText.equals("")){
-               JOptionPane.showMessageDialog(this, "Some fields are empty");
-               return ;
+        if (email.equals("") || name.equals("") || PhoneNumberText.equals("") || speciality.equals("") || idText.equals("")) {
+            JOptionPane.showMessageDialog(this, "Some fields are empty");
+            return;
         }
         try {
             id = Integer.parseInt(idText);
             phoneNumber = Integer.parseInt(PhoneNumberText);
-             JOptionPane.showMessageDialog(this, "the Trainer with id " + id +" has been successfly added");
+            adm.addTrainer(idText, name, email, speciality, PhoneNumberText);
+        
+            setVisible(false);
+            JOptionPane.showMessageDialog(this, "the Trainer with id " + id + " has been successfly added");
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Please enter numeric value.");
             IdText.setText("");

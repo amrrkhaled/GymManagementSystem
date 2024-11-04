@@ -2,7 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package Frontend;
+package frontend;
+
+import constants.LoginCredentials;
 
 import javax.swing.JOptionPane;
 
@@ -15,11 +17,11 @@ public class adminLogin extends javax.swing.JFrame {
     /**
      * Creates new form adminLogin
      */
-    Home h;
+   
 
-    public adminLogin(Home h) {
+    public adminLogin() {
         initComponents();
-        this.h =h ;
+      this.setTitle("Admin Login"); 
     }
 
     /**
@@ -110,8 +112,9 @@ public class adminLogin extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String username = UsernameText.getText();
         String password = PasswordText.getText();
-        if (username.equals("admin") && password.equals("123")) {
-            AdminOptions a = new AdminOptions(this);
+        if (username.equals(LoginCredentials.ADMIN_USERNAME) && password.equals(LoginCredentials.ADMIN_PASSWORD)) {
+            AdminOptions a = new AdminOptions();
+            setVisible(false);
             a.setVisible(true);
         } else {
             JOptionPane.showMessageDialog(this, "Wrong username/password");
