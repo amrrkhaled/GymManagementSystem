@@ -214,7 +214,7 @@ public class AddTrainer extends javax.swing.JFrame {
         try {
          
 
-            if (adm.database.contains(idText)) {
+            if (adm.getDatabase().contains(idText)) {
                 JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " already exists.");
             } else {
                 adm.addTrainer(idText, name, email, speciality, PhoneNumberText);

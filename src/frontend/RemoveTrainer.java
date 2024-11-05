@@ -106,7 +106,7 @@ public class RemoveTrainer extends javax.swing.JFrame {
         }
         try {
           
-            if (adm.database.contains(TextField1)) {
+            if (adm.getDatabase().contains(TextField1)) {
                 adm.removeTrainer(TextField1);
                 JOptionPane.showMessageDialog(this, "the Trainer with id " + TextField1 + " has been successfly removed");
                 setVisible(false);
