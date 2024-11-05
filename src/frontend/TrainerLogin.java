@@ -4,19 +4,20 @@
  */
 package frontend;
 
+import constants.LoginCredentials;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author amr
  */
 public class TrainerLogin extends javax.swing.JFrame {
-
     /**
      * Creates new form TrainerLogin
      */
     public TrainerLogin() {
         initComponents();
             this.setTitle("Trainer Login"); 
-
     }
 
     /**
@@ -71,6 +72,8 @@ public class TrainerLogin extends javax.swing.JFrame {
             }
         });
 
+        trainerPassword.setText("56789");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,8 +114,22 @@ public class TrainerLogin extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        String username = trainerUsername.getText();
+        String password = trainerPassword.getText();
+                  if (username.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "Fields can't be empty");
+            return;
+        }
+                if (username.equals(LoginCredentials.TRAINER_USERNAME) && password.equals(LoginCredentials.TRAINER_PASSWORD)) {
+            TrainerOptions t = new TrainerOptions();
+            setVisible(false);
+            t.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Wrong username/password");
+        }
 
+    }//GEN-LAST:event_jButton1ActionPerformed
+  
     /**
      * @param args the command line arguments
      */

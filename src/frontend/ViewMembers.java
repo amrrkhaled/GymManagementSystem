@@ -4,18 +4,43 @@
  */
 package frontend;
 
+import backend.Member;
+import backend.TrainerRole;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author amr
  */
 public class ViewMembers extends javax.swing.JFrame {
 
+    public TrainerRole trainer;
+
     /**
      * Creates new form ViewMembers
+     *
+     * @param trainer
      */
-    public ViewMembers() {
+    public ViewMembers(TrainerRole trainer) {
         initComponents();
+        this.trainer = trainer;
         this.setTitle("View Members");
+        fillTable();
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+    }
+
+    public void fillTable() {
+
+        List<Member> records = trainer.getListOfMembers();
+
+        DefaultTableModel m = (DefaultTableModel) membersTable.getModel();
+        m.setRowCount(0);
+        for (int i = 0; i < records.size(); i++) {
+            m.addRow(new Object[]{records.get(i).getMemberID(), records.get(i).getName(), records.get(i).getMembershipType(), records.get(i).getEmail(), records.get(i).getPhoneNumber(), records.get(i).getStatus()});
+
+        }
+
     }
 
     /**
@@ -29,11 +54,11 @@ public class ViewMembers extends javax.swing.JFrame {
 
         jScrollPane2 = new javax.swing.JScrollPane();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        membersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        membersTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
                 {null, null, null, null, null, null},
@@ -44,7 +69,7 @@ public class ViewMembers extends javax.swing.JFrame {
                 "Id", "Name", "Email", "Membership Type", "Phone Number", "Status"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(membersTable);
 
         jScrollPane2.setViewportView(jScrollPane1);
 
@@ -71,41 +96,10 @@ public class ViewMembers extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewMembers.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new ViewMembers().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable membersTable;
     // End of variables declaration//GEN-END:variables
 }

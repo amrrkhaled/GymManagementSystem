@@ -94,6 +94,6 @@ Implement the following validations:
 ### Installation
 1. Clone the repository:
    ```bash
-   git clone <https://github.com/amrrkhaled/Gym.git)>
+   git clone https://github.com/amrrkhaled/Gym.git
 
 

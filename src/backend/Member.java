@@ -21,7 +21,29 @@ public class Member implements Identifiables {
         this.status = status;
     }
 
+    public String getMemberID() {
+        return memberID;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getMembershipType() {
+        return membershipType;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public String getStatus() {
+        return status;
+    }
     @Override
     public String lineRepresentation() {
         String data = memberID + ", " + name + ", " + membershipType + ", " + email + ", " + phoneNumber + ", " + status;

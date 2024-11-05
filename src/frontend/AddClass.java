@@ -4,18 +4,28 @@
  */
 package frontend;
 
+import backend.TrainerRole;
+import javax.swing.JOptionPane;
+import backend.AdminRole;
+
 /**
  *
  * @author amr
  */
 public class AddClass extends javax.swing.JFrame {
 
+    TrainerRole trainer;
+    AdminRole admin;
+
     /**
      * Creates new form AddClass
      */
-    public AddClass() {
+    public AddClass(TrainerRole trainer, AdminRole admin) {
         initComponents();
-         this.setTitle("Add Class");
+        this.setTitle("Add Class");
+        this.trainer = trainer;
+        this.admin = admin;
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
     }
 
     /**
@@ -51,7 +61,18 @@ public class AddClass extends javax.swing.JFrame {
 
         jLabel5.setText("Max Participants");
 
+        classId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                classIdActionPerformed(evt);
+            }
+        });
+
         add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -119,40 +140,70 @@ public class AddClass extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void classIdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_classIdActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_classIdActionPerformed
+
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+        String idText = classId.getText();
+        String name = className.getText();
+        String durationTime = duration.getText();
+        String trainerID = trainerId.getText();
+        String maxP = maxParticipants.getText();
+
+        if (idText.isEmpty() || name.isEmpty() || durationTime.isEmpty() || trainerID.isEmpty() || maxP.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Some fields are empty");
+            return;
+        }
+
+        if (!idText.matches("C\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid class ID format. ID should start with 'C' followed by digits.");
+            classId.setText("");
+            return;
+        }
+
+        if (!trainerID.matches("T\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid trainer ID format. ID should start with 'T' followed by digits.");
+            trainerId.setText("");
+            return;
+        }
+        if (!durationTime.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. duration Time should contains digits only .");
+            duration.setText("");
+            return;
+        }
+        if (!maxP.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. max Participants should contains digits only .");
+            maxParticipants.setText("");
+            return;
+        }
+
+        try {
+            if (admin.getDatabase().contains(trainerID)) {
+                if (!trainer.getClassDatabase().contains(idText)) {
+                    int dur = Integer.parseInt(durationTime);
+                    int maxPar = Integer.parseInt(maxP);
+                    trainer.addClass(idText, name, trainerID, dur, maxPar);
+                    JOptionPane.showMessageDialog(this, "The class with ID " + idText + "has been added");
+                } else {
+                    JOptionPane.showMessageDialog(this, "The Class with ID " + idText + " already exists.");
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(this, "The Trainer with ID " + trainerID + " does not exist.");
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error occured." + e);
+
+        }
+
+    }//GEN-LAST:event_addActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddClass.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new AddClass().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;

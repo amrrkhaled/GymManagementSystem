@@ -34,9 +34,19 @@ public class TrainerRole {
         memberDatabase.insertRecord(m);
 
     }
-
+    public MemberDatabase getMemberDatabase(){
+        return this.memberDatabase;
+    }
     public List<Member> getListOfMembers() {
         return memberDatabase.returnAllRecords();
+    }
+
+    public ClassDatabase getClassDatabase() {
+        return classDatabase;
+    }
+
+    public MemberClassRegistrationDatabase getRegistrationDatabase() {
+        return registrationDatabase;
     }
 
     public void addClass(String classID, String className, String trainerID, int duration, int maxParticipants) {

@@ -23,6 +23,23 @@ public class Class implements Identifiables {
 
     public int getAvailableSeats() {
         return availableSeats;
+
+    }
+
+    public String getClassID() {
+        return classID;
+    }
+
+    public String getClassName() {
+        return className;
+    }
+
+    public String getTrainerID() {
+        return trainerID;
+    }
+
+    public int getDuration() {
+        return duration;
     }
 
     public void setAvailableSeats(int availableSeats) {

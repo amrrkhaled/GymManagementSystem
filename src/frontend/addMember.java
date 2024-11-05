@@ -4,18 +4,29 @@
  */
 package frontend;
 
+import javax.swing.JOptionPane;
+import backend.TrainerRole;
+
 /**
  *
  * @author amr
+ *
  */
 public class addMember extends javax.swing.JFrame {
 
+    TrainerRole trainer;
+
     /**
      * Creates new form addMember
+     *
+     * @param trainer
      */
-    public addMember() {
+    public addMember(TrainerRole trainer) {
         initComponents();
         this.setTitle("Add Member");
+        this.trainer = trainer;
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -35,9 +46,9 @@ public class addMember extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         memberId = new javax.swing.JTextField();
         memberEmail = new javax.swing.JTextField();
+        memberStatus = new javax.swing.JTextField();
         memberMembership = new javax.swing.JTextField();
         memberPhoneNumber = new javax.swing.JTextField();
-        memberStatus = new javax.swing.JTextField();
         memberName = new javax.swing.JTextField();
         add = new javax.swing.JButton();
 
@@ -55,9 +66,9 @@ public class addMember extends javax.swing.JFrame {
 
         jLabel6.setText("Status");
 
-        memberPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+        memberMembership.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                memberPhoneNumberActionPerformed(evt);
+                memberMembershipActionPerformed(evt);
             }
         });
 
@@ -68,6 +79,11 @@ public class addMember extends javax.swing.JFrame {
         });
 
         add.setText("Add");
+        add.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -83,8 +99,8 @@ public class addMember extends javax.swing.JFrame {
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(121, 121, 121)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(memberPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(memberStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(memberMembership, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(memberEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -94,7 +110,7 @@ public class addMember extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(memberName, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(memberPhoneNumber, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(memberMembership, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(memberId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -123,15 +139,15 @@ public class addMember extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memberPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(memberMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memberStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(memberPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(memberMembership, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(memberStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(add)
                 .addContainerGap(27, Short.MAX_VALUE))
@@ -144,49 +160,58 @@ public class addMember extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void memberPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberPhoneNumberActionPerformed
+    private void memberMembershipActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberMembershipActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_memberPhoneNumberActionPerformed
+    }//GEN-LAST:event_memberMembershipActionPerformed
 
     private void memberNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_memberNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_memberNameActionPerformed
 
+    private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
+        // TODO add your handling code here:
+        String idText = memberId.getText();
+        String name = memberName.getText();
+        String email = memberEmail.getText();
+        String PhoneNumberText = memberPhoneNumber.getText();
+        String status = memberStatus.getText();
+        String memberShip = memberMembership.getText();
+        if (email.isEmpty() || name.isEmpty() || PhoneNumberText.isEmpty() || status.isEmpty() || idText.isEmpty() || memberShip.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Some fields are empty");
+            return;
+        }
+
+        if (!idText.matches("M\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. ID should start with 'M' followed by digits.");
+            memberId.setText("");
+            return;
+        }
+
+        if (!PhoneNumberText.matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Phone number should only contain digits.");
+            memberPhoneNumber.setText("");
+            return;
+        }
+
+        try {
+            if (trainer.getMemberDatabase().contains(idText)) {
+                JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " already exists.");
+            } else {
+                trainer.addMember(idText, name, memberShip, email, PhoneNumberText, status);
+                JOptionPane.showMessageDialog(this, "The Trainer with ID " + idText + " has been successfully added.");
+                setVisible(false);
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error occured." + e);
+
+        }
+
+    }//GEN-LAST:event_addActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(addMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(addMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(addMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(addMember.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new addMember().setVisible(true);
-            }
-        });
-    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton add;
     private javax.swing.JLabel jLabel1;

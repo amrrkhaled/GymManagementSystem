@@ -117,6 +117,9 @@
     <Component class="javax.swing.JTextField" name="trainerUsername">
     </Component>
     <Component class="javax.swing.JPasswordField" name="trainerPassword">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="56789"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

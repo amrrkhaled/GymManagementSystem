@@ -4,18 +4,26 @@
  */
 package frontend;
 
+import javax.swing.JOptionPane;
+import backend.TrainerRole;
+
 /**
  *
  * @author amr
  */
 public class CancelRegistration extends javax.swing.JFrame {
 
+    public TrainerRole trainer;
+
     /**
      * Creates new form CancelRegistration
      */
-    public CancelRegistration() {
+    public CancelRegistration(TrainerRole trainer) {
         initComponents();
-         this.setTitle("Cancel Registration");
+        this.setTitle("Cancel Registration");
+        this.trainer = trainer;
+        this.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
     }
 
     /**
@@ -40,6 +48,11 @@ public class CancelRegistration extends javax.swing.JFrame {
         jLabel2.setText("Class Id");
 
         cancelRegistration.setText("Cancel Registration");
+        cancelRegistration.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelRegistrationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -79,40 +92,40 @@ public class CancelRegistration extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void cancelRegistrationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelRegistrationActionPerformed
+        // TODO add your handling code here:
+        String memberID = memberId.getText();
+        String classID = classId.getText();
+        if (memberID.equals("") || classID.equals("")) {
+            JOptionPane.showMessageDialog(this, "Some fields are empty");
+            return;
+        }
+        if (!memberID.matches("M\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. ID should start with 'M' followed by digits.");
+            memberId.setText("");
+            return;
+        }
+        if (!classID.matches("C\\d+")) {
+            JOptionPane.showMessageDialog(this, "Invalid ID format. ID should start with 'C' followed by digits.");
+            classId.setText("");
+            return;
+        }
+        try {
+
+                trainer.cancelRegistration(memberID, classID);
+                JOptionPane.showMessageDialog(this, "the Member with id " + memberID + " has been unregistred from class " + classID);
+                setVisible(false);
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Error occured");
+            memberId.setText("");
+            classId.setText("");
+        }
+    }//GEN-LAST:event_cancelRegistrationActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(CancelRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(CancelRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(CancelRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CancelRegistration.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new CancelRegistration().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelRegistration;
